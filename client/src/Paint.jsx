@@ -3,7 +3,7 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
     div:{
-        margin:'10px',
+        margin:'1vh 0.4vh',
       },
       img:{
         maxHeight:'300px',
@@ -16,16 +16,17 @@ const useStyles = createUseStyles({
 
 
 function Paint({urlPaint, index, setPaintSelected, setIsPaintZoomed}) {
+    const classes = useStyles();
+    
     function handleClick() {
         setIsPaintZoomed(true);
         setPaintSelected(`http://localhost:3001${urlPaint}`);
     }
-    
-    const classes = useStyles();
+
 
     return (
-        <div className={classes.div} key={`peinture-${index}}`}>
-            <img src={`http://localhost:3001${urlPaint}`} alt="" className={classes.img} onClick={handleClick}/>
+        <div className={classes.div} key={urlPaint} draggable={true}>
+            <img src={`http://localhost:3001${urlPaint}`} alt="" className={classes.img} onClick={handleClick} draggable={false}/>
         </div>
     )
 }

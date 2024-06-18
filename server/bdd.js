@@ -3,7 +3,7 @@ const { Client } = pg;
 const bdd = new Client({
   user: 'postgres',
   host: 'localhost',
-  database: 'bddpeinture',
+  database: 'bddsimplepeinture',
   password: 'postgres',
   port: '5432',
 });

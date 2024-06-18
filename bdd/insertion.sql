@@ -57,74 +57,6 @@ INSERT INTO Galerie VALUES
 ('Dessins 2012', '', '',5);
 
 INSERT INTO Peinture VALUES
-('Janvier 1976', '57.5cm x 67cm', '/images/encre_et_lying/encre_et_lying_1976/peinture1.jpg',1),
-('Février 1976 : "Passage"', '59.5cm x 62cm', '/images/encre_et_lying/encre_et_lying_1976/peinture2.jpg',1),
-('Février 1976 : "Naissance"', '53cm x 36.5cm', '/images/encre_et_lying/encre_et_lying_1976/peinture3.jpg',1),
-('Mars 1976 : "Un jour, la pluie"', '67.5cm x 61cm','/images/encre_et_lying/encre_et_lying_1976/peinture4.jpg',1),
-('Mars 1976 : "Marécage"', '45cm x 76cm', '/images/encre_et_lying/encre_et_lying_1976/peinture5.jpg',1),
-('Avril 1976 : "L''eau"', '67.5cm x 70cm', '/images/encre_et_lying/encre_et_lying_1976/peinture6.jpg',1),
-('Mai 1976 : "Interférence"', '51cm x 51cm','/images/encre_et_lying/encre_et_lying_1976/peinture7.jpg',1),
-('Juin 1976 : "La traversée"', '70cm x 70cm','/images/encre_et_lying/encre_et_lying_1976/peinture8.jpg',1),
-('Novembre 1976 : "Traversée"', '48cm x 52cm','/images/encre_et_lying/encre_et_lying_1976/peinture9.jpg',1);
-
-INSERT INTO Peinture VALUES
-('Encre et lying 1977 n°1','','/images/encre_et_lying/encre_et_lying_1977/peinture1.jpg',2),
-('Encre et lying 1977 n°2','','/images/encre_et_lying/encre_et_lying_1977/peinture2.jpg',2),
-('Encre et lying 1977 n°3','','/images/encre_et_lying/encre_et_lying_1977/peinture3.jpg',2),
-('Encre et lying 1977 n°4','','/images/encre_et_lying/encre_et_lying_1977/peinture4.jpg',2),
-('Encre et lying 1977 n°5','','/images/encre_et_lying/encre_et_lying_1977/peinture5.jpg',2),
-('Encre et lying 1977 n°6','','/images/encre_et_lying/encre_et_lying_1977/peinture6.jpg',2),
-('Encre et lying 1977 n°7','','/images/encre_et_lying/encre_et_lying_1977/peinture7.jpg',2),
-('Encre et lying 1977 n°8','','/images/encre_et_lying/encre_et_lying_1977/peinture8.jpg',2),
-('Encre et lying 1977 n°9','','/images/encre_et_lying/encre_et_lying_1977/peinture9.jpg',2),
-('Encre et lying 1977 n°10','','/images/encre_et_lying/encre_et_lying_1977/peinture10.jpg',2);
-
-INSERT INTO Peinture VALUES
-('Encre et lying 1978 n°1','','/images/encre_et_lying/encre_et_lying_1978/peinture1.jpg',3),
-('Encre et lying 1978 n°2','','/images/encre_et_lying/encre_et_lying_1978/peinture2.jpg',3),
-('Encre et lying 1978 n°3','','/images/encre_et_lying/encre_et_lying_1978/peinture3.jpg',3);
-
-INSERT INTO Peinture VALUES
-('Encre et lying 1979 n°1','','/images/encre_et_lying/encre_et_lying_1979/peinture1.jpg',4),
-('Encre et lying 1979 n°2','','/images/encre_et_lying/encre_et_lying_1979/peinture2.jpg',4),
-('Encre et lying 1979 n°3','','/images/encre_et_lying/encre_et_lying_1979/peinture3.jpg',4),
-('Encre et lying 1979 n°4','','/images/encre_et_lying/encre_et_lying_1979/peinture4.jpg',4),
-('Encre et lying 1979 n°5','','/images/encre_et_lying/encre_et_lying_1979/peinture5.jpg',4);
-
-INSERT INTO Peinture VALUES
-('Encre et lying 1981 n°1','','/images/encre_et_lying/encre_et_lying_1981/peinture1.jpg',5);
-
-INSERT INTO Peinture VALUES
-('Dessins 2012 n°1','','/images/dessins_2012/peinture1.jpg',22),
-('Dessins 2012 n°2','','/images/dessins_2012/peinture2.jpg',22),
-('Dessins 2012 n°3','','/images/dessins_2012/peinture3.jpg',22),
-('Dessins 2012 n°4','','/images/dessins_2012/peinture4.jpg',22);
-
-INSERT INTO Peinture VALUES
-('Croquis traits continus 1977-1979 n°1','','/images/croquis_traits_continus_1977-1979/peinture1.jpg',21),
-('Croquis traits continus 1977-1979 n°2','','/images/croquis_traits_continus_1977-1979/peinture2.jpg',21),
-('Croquis traits continus 1977-1979 n°3','','/images/croquis_traits_continus_1977-1979/peinture3.jpg',21),
-('Croquis traits continus 1977-1979 n°4','','/images/croquis_traits_continus_1977-1979/peinture4.jpg',21),
-('Croquis traits continus 1977-1979 n°5','','/images/croquis_traits_continus_1977-1979/peinture5.jpg',21),
-('Croquis traits continus 1977-1979 n°6','','/images/croquis_traits_continus_1977-1979/peinture6.jpg',21),
-('Croquis traits continus 1977-1979 n°7','','/images/croquis_traits_continus_1977-1979/peinture7.jpg',21),
-('Croquis traits continus 1977-1979 n°8','','/images/croquis_traits_continus_1977-1979/peinture8.jpg',21),
-('Croquis traits continus 1977-1979 n°9','','/images/croquis_traits_continus_1977-1979/peinture9.jpg',21),
-('Croquis traits continus 1977-1979 n°10','','/images/croquis_traits_continus_1977-1979/peinture10.jpg',21),
-('Croquis traits continus 1977-1979 n°11','','/images/croquis_traits_continus_1977-1979/peinture11.jpg',21),
-('Croquis traits continus 1977-1979 n°12','','/images/croquis_traits_continus_1977-1979/peinture12.jpg',21),
-('Croquis traits continus 1977-1979 n°13','','/images/croquis_traits_continus_1977-1979/peinture13.jpg',21);
-
-INSERT INTO Peinture VALUES
-('Stylo à bille n°1','','/images/stylo_à_bille/peinture1.jpg',20),
-('Stylo à bille n°2','','/images/stylo_à_bille/peinture2.jpg',20),
-('Stylo à bille n°3','','/images/stylo_à_bille/peinture3.jpg',20),
-('Stylo à bille n°4','','/images/stylo_à_bille/peinture4.jpg',20),
-('Stylo à bille n°5','','/images/stylo_à_bille/peinture5.jpg',20),
-('Stylo à bille n°6','','/images/stylo_à_bille/peinture6.jpg',20),
-('Stylo à bille n°7','','/images/stylo_à_bille/peinture7.jpg',20);
-
-INSERT INTO Peinture VALUES
 ('Peinture 1981 n°1','','/images/peinture/peinture_1981/peinture1.jpg',6);
 
 INSERT INTO Peinture VALUES
@@ -216,3 +148,73 @@ INSERT INTO Peinture VALUES
 ('Peinture 2015 n°3','','/images/peinture/peinture_2015/peinture3.jpg',19),
 ('Peinture 2015 n°4','','/images/peinture/peinture_2015/peinture4.jpg',19),
 ('Peinture 2015 n°5','','/images/peinture/peinture_2015/peinture5.jpg',19);
+
+INSERT INTO Peinture VALUES
+('Stylo à bille n°1','','/images/stylo_à_bille/peinture1.jpg',20),
+('Stylo à bille n°2','','/images/stylo_à_bille/peinture2.jpg',20),
+('Stylo à bille n°3','','/images/stylo_à_bille/peinture3.jpg',20),
+('Stylo à bille n°4','','/images/stylo_à_bille/peinture4.jpg',20),
+('Stylo à bille n°5','','/images/stylo_à_bille/peinture5.jpg',20),
+('Stylo à bille n°6','','/images/stylo_à_bille/peinture6.jpg',20),
+('Stylo à bille n°7','','/images/stylo_à_bille/peinture7.jpg',20);
+
+INSERT INTO Peinture VALUES
+('Janvier 1976', '57.5cm x 67cm', '/images/encre_et_lying/encre_et_lying_1976/peinture1.jpg',1),
+('Février 1976 : "Passage"', '59.5cm x 62cm', '/images/encre_et_lying/encre_et_lying_1976/peinture2.jpg',1),
+('Février 1976 : "Naissance"', '53cm x 36.5cm', '/images/encre_et_lying/encre_et_lying_1976/peinture3.jpg',1),
+('Mars 1976 : "Un jour, la pluie"', '67.5cm x 61cm','/images/encre_et_lying/encre_et_lying_1976/peinture4.jpg',1),
+('Mars 1976 : "Marécage"', '45cm x 76cm', '/images/encre_et_lying/encre_et_lying_1976/peinture5.jpg',1),
+('Avril 1976 : "L''eau"', '67.5cm x 70cm', '/images/encre_et_lying/encre_et_lying_1976/peinture6.jpg',1),
+('Mai 1976 : "Interférence"', '51cm x 51cm','/images/encre_et_lying/encre_et_lying_1976/peinture7.jpg',1),
+('Juin 1976 : "La traversée"', '70cm x 70cm','/images/encre_et_lying/encre_et_lying_1976/peinture8.jpg',1),
+('Novembre 1976 : "Traversée"', '48cm x 52cm','/images/encre_et_lying/encre_et_lying_1976/peinture9.jpg',1);
+
+INSERT INTO Peinture VALUES
+('Encre et lying 1977 n°1','','/images/encre_et_lying/encre_et_lying_1977/peinture1.jpg',2),
+('Encre et lying 1977 n°2','','/images/encre_et_lying/encre_et_lying_1977/peinture2.jpg',2),
+('Encre et lying 1977 n°3','','/images/encre_et_lying/encre_et_lying_1977/peinture3.jpg',2),
+('Encre et lying 1977 n°4','','/images/encre_et_lying/encre_et_lying_1977/peinture4.jpg',2),
+('Encre et lying 1977 n°5','','/images/encre_et_lying/encre_et_lying_1977/peinture5.jpg',2),
+('Encre et lying 1977 n°6','','/images/encre_et_lying/encre_et_lying_1977/peinture6.jpg',2),
+('Encre et lying 1977 n°7','','/images/encre_et_lying/encre_et_lying_1977/peinture7.jpg',2),
+('Encre et lying 1977 n°8','','/images/encre_et_lying/encre_et_lying_1977/peinture8.jpg',2),
+('Encre et lying 1977 n°9','','/images/encre_et_lying/encre_et_lying_1977/peinture9.jpg',2),
+('Encre et lying 1977 n°10','','/images/encre_et_lying/encre_et_lying_1977/peinture10.jpg',2);
+
+INSERT INTO Peinture VALUES
+('Encre et lying 1978 n°1','','/images/encre_et_lying/encre_et_lying_1978/peinture1.jpg',3),
+('Encre et lying 1978 n°2','','/images/encre_et_lying/encre_et_lying_1978/peinture2.jpg',3),
+('Encre et lying 1978 n°3','','/images/encre_et_lying/encre_et_lying_1978/peinture3.jpg',3);
+
+INSERT INTO Peinture VALUES
+('Encre et lying 1979 n°1','','/images/encre_et_lying/encre_et_lying_1979/peinture1.jpg',4),
+('Encre et lying 1979 n°2','','/images/encre_et_lying/encre_et_lying_1979/peinture2.jpg',4),
+('Encre et lying 1979 n°3','','/images/encre_et_lying/encre_et_lying_1979/peinture3.jpg',4),
+('Encre et lying 1979 n°4','','/images/encre_et_lying/encre_et_lying_1979/peinture4.jpg',4),
+('Encre et lying 1979 n°5','','/images/encre_et_lying/encre_et_lying_1979/peinture5.jpg',4);
+
+INSERT INTO Peinture VALUES
+('Encre et lying 1981 n°1','','/images/encre_et_lying/encre_et_lying_1981/peinture1.jpg',5);
+
+INSERT INTO Peinture VALUES
+('Croquis traits continus 1977-1979 n°1','','/images/croquis_traits_continus_1977-1979/peinture1.jpg',21),
+('Croquis traits continus 1977-1979 n°2','','/images/croquis_traits_continus_1977-1979/peinture2.jpg',21),
+('Croquis traits continus 1977-1979 n°3','','/images/croquis_traits_continus_1977-1979/peinture3.jpg',21),
+('Croquis traits continus 1977-1979 n°4','','/images/croquis_traits_continus_1977-1979/peinture4.jpg',21),
+('Croquis traits continus 1977-1979 n°5','','/images/croquis_traits_continus_1977-1979/peinture5.jpg',21),
+('Croquis traits continus 1977-1979 n°6','','/images/croquis_traits_continus_1977-1979/peinture6.jpg',21),
+('Croquis traits continus 1977-1979 n°7','','/images/croquis_traits_continus_1977-1979/peinture7.jpg',21),
+('Croquis traits continus 1977-1979 n°8','','/images/croquis_traits_continus_1977-1979/peinture8.jpg',21),
+('Croquis traits continus 1977-1979 n°9','','/images/croquis_traits_continus_1977-1979/peinture9.jpg',21),
+('Croquis traits continus 1977-1979 n°10','','/images/croquis_traits_continus_1977-1979/peinture10.jpg',21),
+('Croquis traits continus 1977-1979 n°11','','/images/croquis_traits_continus_1977-1979/peinture11.jpg',21),
+('Croquis traits continus 1977-1979 n°12','','/images/croquis_traits_continus_1977-1979/peinture12.jpg',21),
+('Croquis traits continus 1977-1979 n°13','','/images/croquis_traits_continus_1977-1979/peinture13.jpg',21);
+
+INSERT INTO Peinture VALUES
+('Dessins 2012 n°1','','/images/dessins_2012/peinture1.jpg',22),
+('Dessins 2012 n°2','','/images/dessins_2012/peinture2.jpg',22),
+('Dessins 2012 n°3','','/images/dessins_2012/peinture3.jpg',22),
+('Dessins 2012 n°4','','/images/dessins_2012/peinture4.jpg',22);
+
+

@@ -1,7 +1,7 @@
 import PaintSelector from "./PaintSelector";
 import DisplayPaint from "./DisplayPaint";
 import { createUseStyles } from 'react-jss';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ZoomPaint from "./ZoomPaint";
 
 const useStyles = createUseStyles({
@@ -10,13 +10,12 @@ const useStyles = createUseStyles({
     width:'100%'
   }
 })
-async function fetchData() {
-  const request = await fetch('http://localhost:3001/api/nomCollection');
+async function fetchCategoriesNames() {
+  const request = await fetch('http://localhost:3001/api/nomCategorie');
   const res = await request.json();
   return res;
 }
 
-const data = await fetchData();
 
 function App() {
   
@@ -24,20 +23,30 @@ function App() {
 
   const [paintArray, setPaintArray] = useState([]);
   const [isPaintZoomed, setIsPaintZoomed] = useState(false);
-  const [paintSelected, setPaintSelected] = useState();
-  const [checkboxes, setCheckboxes] = useState(data);
-  
+  const [paintSelected, setPaintSelected] = useState("");
+  const [isClosed, setIsClosed] = useState(true);
+  const [buttonRadioSelected, setButtonRadioSelected] = useState();
+  const [categoriesNames, setCategoriesNames] = useState([]);
+
+  useEffect(()=>{
+    const promise = fetchCategoriesNames();
+   
+    promise.then(newCategoriesNames => {
+      setCategoriesNames(newCategoriesNames)
+      setButtonRadioSelected(0)
+    });
+  },[])
   
   if (isPaintZoomed) {
     return(
-      <ZoomPaint paintSelected={paintSelected} setIsPaintZoomed={setIsPaintZoomed}></ZoomPaint>
+      <ZoomPaint paintSelected={paintSelected} setIsPaintZoomed={setIsPaintZoomed} paintArray={paintArray} setPaintArray={setPaintArray}></ZoomPaint>
     )
   }
   else{
     return (
       <div className={classes.app}>
-        <PaintSelector checkboxes={checkboxes} setCheckboxes={setCheckboxes} data={data} setPaintArray={setPaintArray}/>
-        <DisplayPaint paintArray={paintArray} setPaintSelected={setPaintSelected} setIsPaintZoomed={setIsPaintZoomed}/>
+        <PaintSelector buttonRadioSelected={buttonRadioSelected} setButtonRadioSelected={setButtonRadioSelected} categoriesNames={categoriesNames} setCategoriesNames={setCategoriesNames} setPaintArray={setPaintArray} isClosed={isClosed} setIsClosed={setIsClosed}/>
+        <DisplayPaint paintArray={paintArray} setPaintArray={setPaintArray} setPaintSelected={setPaintSelected} setIsPaintZoomed={setIsPaintZoomed} categoriesNames={categoriesNames} buttonRadioSelected={buttonRadioSelected}/>
       </div>
     );
   }
