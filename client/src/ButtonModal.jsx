@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
 
 function ButtonModal({text, f}) {
     const classes = useStyles();
-    return ( <button className={`${classes.button}`} onClick={f}>{text}</button> );
+    return ( <button className={`${classes.button}`} onClick={f} >{text}</button> );
 }
 
 export default ButtonModal;

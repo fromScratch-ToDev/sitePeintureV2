@@ -1,32 +1,44 @@
 import React from "react";
+import { useEffect } from "react";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
     div:{
         margin:'1vh 0.4vh',
+        width:0,
+        overflow:'hidden',
+
       },
       img:{
-        maxHeight:'300px',
+        height:'300px',
         maxWidth:'540px',
         display:'flex',
         margin:'auto',
-        cursor:'pointer'
+        cursor:'pointer',
       }
 })
 
 
-function Paint({urlPaint, index, setPaintSelected, setIsPaintZoomed}) {
+function Paint({idPaint, urlPaint, setPaintSelected, setIsPaintZoomed}) {
     const classes = useStyles();
-    
+
+    useEffect(()=>{
+        const images = document.querySelectorAll(`.${classes.div}`);
+        images.forEach((img, i) => {
+            setTimeout(()=>{
+                img.style.width = "fit-content";
+            },(i+1)*10)
+        })
+    },[classes.div])
+
     function handleClick() {
         setIsPaintZoomed(true);
-        setPaintSelected(`http://localhost:3001${urlPaint}`);
+        setPaintSelected({"idPaint":idPaint, "urlPaint":urlPaint});
     }
-
 
     return (
         <div className={classes.div} key={urlPaint} draggable={true}>
-            <img src={`http://localhost:3001${urlPaint}`} alt="" className={classes.img} onClick={handleClick} draggable={false}/>
+            <img src={urlPaint} alt="" data-id={idPaint} className={classes.img} onClick={handleClick} draggable={false}/>
         </div>
     )
 }

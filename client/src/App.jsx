@@ -35,11 +35,13 @@ function App() {
       setCategoriesNames(newCategoriesNames)
       setButtonRadioSelected(0)
     });
+
+    fetch('http://localhost:3001/api/backup');
   },[])
   
   if (isPaintZoomed) {
     return(
-      <ZoomPaint paintSelected={paintSelected} setIsPaintZoomed={setIsPaintZoomed} paintArray={paintArray} setPaintArray={setPaintArray}></ZoomPaint>
+      <ZoomPaint paintSelected={paintSelected} setIsPaintZoomed={setIsPaintZoomed} categoriesNames={categoriesNames}></ZoomPaint>
     )
   }
   else{

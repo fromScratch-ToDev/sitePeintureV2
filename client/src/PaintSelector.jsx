@@ -109,15 +109,26 @@ function PaintSelector({ buttonRadioSelected, setButtonRadioSelected, categories
   },[buttonRadioSelected]);
 
   async function requestForPaint(index) {
-    const newPaintArray = []
-
-    const request = await fetch(`http://localhost:3001/api/getPeintures?galerieName=${categoriesNames[index]}`)
-    const urlPaints = await request.json() 
-    urlPaints.forEach((urlPaint)=>{
-      newPaintArray.push(urlPaint)
-    })  
-    setPaintArray(newPaintArray);
-  }
+    let newPaintArray = [];
+    const response = await fetch(`http://localhost:3001/api/getIds?galerieName=${categoriesNames[index]}`);
+    const ids = await response.json(); 
+    if (Array.from(ids).length !== 0) {
+      Array.from(ids).forEach(async (id)=>{
+        const response = await fetch(`http://localhost:3001/api/getDataPeinture?idPaint=${id}`);
+        const buffer = await response.json();
+        const datapeinture = buffer[0];
+        const file = new File([new Uint8Array(datapeinture.data)], "image");  
+        const urlPaint = URL.createObjectURL(file); 
+        newPaintArray = [...newPaintArray, [id, urlPaint]];
+        newPaintArray.sort((a, b)=> a[0] - b[0])
+        setPaintArray(newPaintArray)
+      })    
+    }
+    else{
+      setPaintArray([]);
+    }
+    }
+  
 
   function handleRadioChange(index) {
     setButtonRadioSelected(index);
@@ -137,7 +148,7 @@ function PaintSelector({ buttonRadioSelected, setButtonRadioSelected, categories
     const input = document.querySelector('#inputChangeNameCategory');
     const newName = input.value.trim();
     const oldName = categoriesNames[buttonRadioSelected];
-    if (newName !== "" && newName !== undefined && oldName!=undefined) {
+    if (newName !== "" && newName !== undefined && oldName!==undefined) {
       await fetch('http://localhost:3001/api/changeCategoryName',{
         method:'POST',
         headers:{'content-type':'application/json'},
@@ -152,7 +163,7 @@ function PaintSelector({ buttonRadioSelected, setButtonRadioSelected, categories
     
       setCategoriesNames(newCategoriesNames);
     }
-    else if(oldName!=undefined){
+    else if(oldName!==undefined){
       setInputValueChange(oldName);
     } 
     handleModalShowRename();

@@ -45,8 +45,8 @@ function drop_handler(event, paintArray, setPaintArray, nameCategorySelected, mo
   const allowedTypes = [
     'image/png', 'image/jpeg', 'image/gif', 'image/bmp', 'image/webp',
     'image/svg+xml', 'image/tiff', 'image/vnd.microsoft.icon',
-    'image/heic', 'image/heif', 'image/avif'
-];
+    'image/heic', 'image/heif', 'image/avif',
+  ];
   Array.from(files).forEach(async (file) => {
     if (allowedTypes.includes(file.type)) {
       const formData = new FormData(); 
@@ -54,25 +54,23 @@ function drop_handler(event, paintArray, setPaintArray, nameCategorySelected, mo
       formData.append('name', file.name);
       formData.append('nomCategorie',nameCategorySelected);
       
-
-      await fetch('http://localhost:3001/api/setStorage',{
-        method:"POST",
-        headers: {
-          'Content-Type': 'application/json'
-          },
-        body:JSON.stringify({
-          nomCategorie : nameCategorySelected
-        })   
-      })
-
-      await fetch('http://localhost:3001/api/createImage',{
-        method:"POST",
-        body:formData,
-        })
-        .then(response => response.json())
-        .then(result => paintArray.push(result))
-      
-      setPaintArray([...paintArray]);
+      if (nameCategorySelected !== undefined) {
+        await fetch('http://localhost:3001/api/createImage',{
+          method:"POST",
+          body:formData,
+          })
+          .then(response => response.json())
+          .then(result => {
+            const file = new File([new Uint8Array(result.datapeinture.data)], "image");
+            const urlPaint = URL.createObjectURL(file); 
+            paintArray.push([result.numpeinture, urlPaint])
+          })
+        
+        setPaintArray([...paintArray]);
+      }
+      else{
+        alert("SÉLECTIONNEZ D'ABORD UNE CATÉGORIE !")
+      }
     }
     else{
       alert("SEULES LES IMAGES SONT ACCEPTÉES !")
@@ -95,6 +93,7 @@ function DisplayPaint({paintArray,setPaintArray, setPaintSelected,setIsPaintZoom
   const classes = useStyles();
   const nameCategorySelected = categoriesNames[buttonRadioSelected];
   const modal = document.querySelector('#modalDragAndDrop');
+ 
   return (
       <section className={classes.container} onDragOver={(event) => event.preventDefault()} onDrop={(event)=>drop_handler(event, paintArray, setPaintArray, nameCategorySelected, modal)} onDragEnter={(event)=>handlerDragEnter(event,modal)}>
         <dialog id="modalDragAndDrop" className={classes.modal} onDragLeave={(event)=>handlerDragLeave(event, modal)} >
@@ -106,7 +105,7 @@ function DisplayPaint({paintArray,setPaintArray, setPaintSelected,setIsPaintZoom
             <p className={classes.p}>Ajouter une image</p>
           </div>
         </dialog>
-        {paintArray.map((urlPaint,index)=> <Paint urlPaint={urlPaint} index={index} setPaintSelected={setPaintSelected} setIsPaintZoomed={setIsPaintZoomed} key={`peinture-${index}`}></Paint>)}
+        {paintArray.map(([idPaint, urlPaint])=> <Paint idPaint={idPaint} urlPaint={urlPaint} setPaintSelected={setPaintSelected} setIsPaintZoomed={setIsPaintZoomed} key={`peinture-${idPaint}`}></Paint>)}
       </section>
          
     );

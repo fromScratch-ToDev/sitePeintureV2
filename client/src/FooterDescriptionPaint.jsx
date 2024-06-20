@@ -30,8 +30,7 @@ const useStyles = createUseStyles({
  
 })
 
-function saveDescriptionPaint(urlPaint, description) {
-    
+function saveDescriptionPaint(idPaint, description) {
     fetch("http://localhost:3001/api/postDescriptionPeinture",{
         method:'POST',
         headers: {
@@ -39,30 +38,27 @@ function saveDescriptionPaint(urlPaint, description) {
         },
         body: JSON.stringify({
             description : description,
-            urlPaint : urlPaint
+            idPaint : idPaint
         })
     })
 }
 
 function FooterDescriptionPaint({isMouseBottomScreen, paintSelected}) {
     const [descriptionPaint, setDescriptionPaint] = useState("");
-
-    const urlPaint = paintSelected.replace("http://localhost:3001","");
     useEffect(() => {
-    
-        fetch(`http://localhost:3001/api/getDescriptionPeinture?urlPaint=${urlPaint}`)
+        fetch(`http://localhost:3001/api/getDescriptionPeinture?idPaint=${paintSelected.idPaint}`)
         .then(result => result.json())
         .then(data => {
             setDescriptionPaint(data)
         });
-      },[urlPaint, paintSelected])  
+      },[paintSelected])  
 
     function OnInput() {
         const tx = document.querySelector('textarea');
         tx.style.height = 'auto';
         tx.style.height = (tx.scrollHeight) + "px";
         const description = document.querySelector("textarea").value
-        saveDescriptionPaint(urlPaint, description);   
+        saveDescriptionPaint(paintSelected.idPaint, description);   
     }
  
     const classes = useStyles({isMouseBottomScreen});
