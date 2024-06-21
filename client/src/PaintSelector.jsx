@@ -93,11 +93,27 @@ const useStyles = createUseStyles({
 
 })
 
+
+
 function PaintSelector({ buttonRadioSelected, setButtonRadioSelected, categoriesNames, setCategoriesNames, setPaintArray, isClosed, setIsClosed}) {
 
   const classes = useStyles(isClosed);
   const [inputValueChange, setInputValueChange] = useState(categoriesNames[buttonRadioSelected] === undefined ? " ": categoriesNames[buttonRadioSelected]);
   const [inputValueAdd, setInputValueAdd] = useState('');
+  useEffect(()=>{
+    const paintSelector = document.getElementsByClassName(classes.container)[0];
+    const event = (e)=>{
+      if(! paintSelector.contains(e.target)){
+        setIsClosed(true)
+      }
+    }
+    document.addEventListener('click',event)
+
+    return () => {
+      // Code à exécuter lors du démontage du composant
+      document.removeEventListener("click",event)
+    };
+  },[classes, setIsClosed])
 
   useEffect(() => {
     setInputValueChange(categoriesNames[buttonRadioSelected] === undefined ? " ": categoriesNames[buttonRadioSelected]);
@@ -215,8 +231,6 @@ function PaintSelector({ buttonRadioSelected, setButtonRadioSelected, categories
     }
     document.querySelector("#modalAdd").close();
   }
-  
-  
 
   return (
     <section className={classes.container}>
