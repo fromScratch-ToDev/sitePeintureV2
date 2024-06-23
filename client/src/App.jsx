@@ -7,6 +7,7 @@ import ZoomPaint from "./ZoomPaint";
 const useStyles = createUseStyles({
   app : {
     display : 'flex',
+    flexDirection : "column",
     width:'100%'
   }
 })
@@ -27,6 +28,7 @@ function App() {
   const [isClosed, setIsClosed] = useState(true);
   const [buttonRadioSelected, setButtonRadioSelected] = useState();
   const [categoriesNames, setCategoriesNames] = useState([]);
+  const [categoryDescription, setCategoryDescription] = useState('');
 
   useEffect(()=>{
     const promise = fetchCategoriesNames();
@@ -41,14 +43,14 @@ function App() {
   
   if (isPaintZoomed) {
     return(
-      <ZoomPaint paintSelected={paintSelected} setIsPaintZoomed={setIsPaintZoomed} categoriesNames={categoriesNames}></ZoomPaint>
+      <ZoomPaint paintSelected={paintSelected} setIsPaintZoomed={setIsPaintZoomed} categoriesNames={categoriesNames} paintArray={paintArray} setPaintArray={setPaintArray}></ZoomPaint>
     )
   }
   else{
     return (
       <div className={classes.app}>
-        <PaintSelector buttonRadioSelected={buttonRadioSelected} setButtonRadioSelected={setButtonRadioSelected} categoriesNames={categoriesNames} setCategoriesNames={setCategoriesNames} setPaintArray={setPaintArray} isClosed={isClosed} setIsClosed={setIsClosed}/>
-        <DisplayPaint paintArray={paintArray} setPaintArray={setPaintArray} setPaintSelected={setPaintSelected} setIsPaintZoomed={setIsPaintZoomed} categoriesNames={categoriesNames} buttonRadioSelected={buttonRadioSelected}/>
+        <PaintSelector buttonRadioSelected={buttonRadioSelected} setButtonRadioSelected={setButtonRadioSelected} categoriesNames={categoriesNames} setCategoriesNames={setCategoriesNames} setPaintArray={setPaintArray} isClosed={isClosed} setIsClosed={setIsClosed} setCategoryDescription={setCategoryDescription}/>
+        <DisplayPaint paintArray={paintArray} setPaintArray={setPaintArray} setPaintSelected={setPaintSelected} setIsPaintZoomed={setIsPaintZoomed} categoriesNames={categoriesNames} buttonRadioSelected={buttonRadioSelected} categoryDescription={categoryDescription}/>
       </div>
     );
   }

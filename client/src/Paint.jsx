@@ -37,7 +37,7 @@ function Paint({idPaint, urlPaint, setPaintSelected, setIsPaintZoomed}) {
     }
 
     return (
-        <div className={classes.div} key={urlPaint} draggable={true}>
+        <div className={classes.div} draggable={true}>
             <img src={urlPaint} alt="" data-id={idPaint} className={classes.img} onClick={handleClick} draggable={false}/>
         </div>
     )

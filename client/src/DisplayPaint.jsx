@@ -1,6 +1,7 @@
 import React from "react";
 import { createUseStyles } from 'react-jss';
 import Paint from './Paint'
+import HeaderDescriptionCategory from './HeaderDescriptionCategory'
 
 const useStyles = createUseStyles({
   container:{
@@ -55,6 +56,7 @@ function drop_handler(event, paintArray, setPaintArray, nameCategorySelected, mo
       formData.append('nomCategorie',nameCategorySelected);
       
       if (nameCategorySelected !== undefined) {
+        let newPaintArray = [...paintArray];
         await fetch('http://localhost:3001/api/createImage',{
           method:"POST",
           body:formData,
@@ -63,10 +65,10 @@ function drop_handler(event, paintArray, setPaintArray, nameCategorySelected, mo
           .then(result => {
             const file = new File([new Uint8Array(result.datapeinture.data)], "image");
             const urlPaint = URL.createObjectURL(file); 
-            paintArray.push([result.numpeinture, urlPaint])
+            newPaintArray.push([result.numpeinture, urlPaint])
           })
         
-        setPaintArray([...paintArray]);
+        setPaintArray(newPaintArray);
       }
       else{
         alert("SÉLECTIONNEZ D'ABORD UNE CATÉGORIE !")
@@ -89,12 +91,15 @@ function handlerDragLeave(event, modal) {
   }
 }
 
-function DisplayPaint({paintArray,setPaintArray, setPaintSelected,setIsPaintZoomed,categoriesNames, buttonRadioSelected}) {
+function DisplayPaint({paintArray,setPaintArray, setPaintSelected,setIsPaintZoomed,categoriesNames, buttonRadioSelected, categoryDescription}) {
   const classes = useStyles();
   const nameCategorySelected = categoriesNames[buttonRadioSelected];
   const modal = document.querySelector('#modalDragAndDrop');
  
   return (
+    <>
+      <HeaderDescriptionCategory categoryDescription={categoryDescription} categoryName={categoriesNames[buttonRadioSelected]}></HeaderDescriptionCategory>
+
       <section className={classes.container} onDragOver={(event) => event.preventDefault()} onDrop={(event)=>drop_handler(event, paintArray, setPaintArray, nameCategorySelected, modal)} onDragEnter={(event)=>handlerDragEnter(event,modal)}>
         <dialog id="modalDragAndDrop" className={classes.modal} onDragLeave={(event)=>handlerDragLeave(event, modal)} >
           <div className={classes.modalContainer} >
@@ -107,6 +112,7 @@ function DisplayPaint({paintArray,setPaintArray, setPaintSelected,setIsPaintZoom
         </dialog>
         {paintArray.map(([idPaint, urlPaint])=> <Paint idPaint={idPaint} urlPaint={urlPaint} setPaintSelected={setPaintSelected} setIsPaintZoomed={setIsPaintZoomed} key={`peinture-${idPaint}`}></Paint>)}
       </section>
+    </>
          
     );
 }

@@ -54,7 +54,7 @@ const useStyles = createUseStyles({
 
 
 
-function ZoomPaint({paintSelected, setIsPaintZoomed, categoriesNames}) {
+function ZoomPaint({paintSelected, setIsPaintZoomed, categoriesNames, paintArray, setPaintArray}) {
     const [isMouseBottomScreen, setIsMouseBottomScreen] = useState(true);
     const [zoomed, setZoomed] = useState(false);
     const classes = useStyles({zoomed});
@@ -92,8 +92,8 @@ function ZoomPaint({paintSelected, setIsPaintZoomed, categoriesNames}) {
         }
     }
 
-    function deleteImage(){
-        fetch("/api/deleteImage",{
+    async function deleteImage(){
+        await fetch("/api/deleteImage",{
             method:"DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -102,10 +102,10 @@ function ZoomPaint({paintSelected, setIsPaintZoomed, categoriesNames}) {
                 idPaint : paintSelected.idPaint
             })
         })
-        .then(()=>{
-            setIsPaintZoomed(false);
-        })
-
+        let newPaintArray = [...paintArray];
+        newPaintArray.slice(newPaintArray.findIndex(paint => paint[0] === paintSelected.idPaint),1);
+        setPaintArray(newPaintArray);
+        setIsPaintZoomed(false);   
     }
 
     function changeCategory() {

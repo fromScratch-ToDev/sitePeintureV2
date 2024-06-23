@@ -53,7 +53,7 @@ function FooterDescriptionPaint({isMouseBottomScreen, paintSelected}) {
         });
       },[paintSelected])  
 
-    function OnInput() {
+    function handleOnInput() {
         const tx = document.querySelector('textarea');
         tx.style.height = 'auto';
         tx.style.height = (tx.scrollHeight) + "px";
@@ -65,7 +65,7 @@ function FooterDescriptionPaint({isMouseBottomScreen, paintSelected}) {
   
     return(
         <footer className={classes.footer}>
-            <textarea className={classes.textarea} onInput={OnInput} defaultValue={descriptionPaint}></textarea>
+            <textarea className={classes.textarea} onInput={handleOnInput} defaultValue={descriptionPaint}></textarea>
         </footer>  
     )
     

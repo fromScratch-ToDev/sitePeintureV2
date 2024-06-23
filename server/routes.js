@@ -136,3 +136,17 @@ router.put('/api/changeImageCategory',(req,res)=>{
     bdd.query(query, [id,nouvelleCategorie])
     .then(()=>res.end())
 })
+
+router.get('/api/getCategoryDescription',(req,res)=>{
+    const categorie = req.query.categorie;
+    const query = "select descriptioncategorie from categorie where nomcategorie = $1";
+    bdd.query(query, [categorie])
+    .then((result) => res.end(JSON.stringify(result.rows.map((row) => row.descriptioncategorie))))
+})
+
+router.put('/api/putCategoryDescritpion',(req,res)=>{
+    const {description, nomCategorie} = req.body;
+    const query = "update categorie set descriptioncategorie=$1 where nomcategorie=$2"
+    bdd.query(query, [description, nomCategorie])
+    res.end()
+})

@@ -95,11 +95,12 @@ const useStyles = createUseStyles({
 
 
 
-function PaintSelector({ buttonRadioSelected, setButtonRadioSelected, categoriesNames, setCategoriesNames, setPaintArray, isClosed, setIsClosed}) {
+function PaintSelector({ buttonRadioSelected, setButtonRadioSelected, categoriesNames, setCategoriesNames, setPaintArray, isClosed, setIsClosed, setCategoryDescription}) {
 
   const classes = useStyles(isClosed);
   const [inputValueChange, setInputValueChange] = useState(categoriesNames[buttonRadioSelected] === undefined ? " ": categoriesNames[buttonRadioSelected]);
   const [inputValueAdd, setInputValueAdd] = useState('');
+
   useEffect(()=>{
     const paintSelector = document.getElementsByClassName(classes.container)[0];
     const event = (e)=>{
@@ -121,6 +122,7 @@ function PaintSelector({ buttonRadioSelected, setButtonRadioSelected, categories
  
   useEffect(()=>{
     requestForPaint(buttonRadioSelected);
+    getCategoryDescription();
     // eslint-disable-next-line
   },[buttonRadioSelected]);
 
@@ -144,7 +146,12 @@ function PaintSelector({ buttonRadioSelected, setButtonRadioSelected, categories
       setPaintArray([]);
     }
     }
-  
+
+  async function getCategoryDescription() {
+    const result = await fetch(`http://localhost:3001/api/getCategoryDescription?categorie=${categoriesNames[buttonRadioSelected]}`);
+    const description = await result.json();
+    setCategoryDescription(description); 
+  }
 
   function handleRadioChange(index) {
     setButtonRadioSelected(index);
@@ -285,7 +292,7 @@ function PaintSelector({ buttonRadioSelected, setButtonRadioSelected, categories
 
       <ModalConfirm id="modalDelete"
         header={
-            <p className={classes.p}>Êtes vous sûr de vouloir supprimer la catégorie {categoriesNames[buttonRadioSelected]} et toutes ces images ?</p>
+          <p className={classes.p}>Êtes vous sûr de vouloir supprimer la catégorie {categoriesNames[buttonRadioSelected]} et toutes ces images ?</p>
         }
         buttonConfirm={
           <ButtonModal text="valider" f={deleteCategorie}></ButtonModal>
@@ -302,15 +309,14 @@ function PaintSelector({ buttonRadioSelected, setButtonRadioSelected, categories
             <p className={classes.p}>Entrer le nom de la nouvelle catégorie</p>
             <input id="inputNameNewCategory" autoFocus type="text" value={inputValueAdd} onChange={(e)=>setInputValueAdd(e.target.value)}  onKeyDown={(e)=> e.key === 'Enter' && addCategorie()} className={classes.input}></input>
           </>
-
-        }
-        buttonConfirm={
-          <ButtonModal text="valider" f={addCategorie}></ButtonModal>
-        }
-        buttonCancel={
-          <ButtonModal text="annuler" f={handleModalShowAdd}></ButtonModal>
-        }
-        >
+          } 
+          buttonConfirm={
+            <ButtonModal text="valider" f={addCategorie}></ButtonModal>
+          }
+          buttonCancel={
+            <ButtonModal text="annuler" f={handleModalShowAdd}></ButtonModal>
+          }
+>
       </ModalConfirm>
 
     </section>

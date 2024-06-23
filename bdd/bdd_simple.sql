@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS Categorie, Peinture;
 
 CREATE TABLE Categorie(
     nomCategorie VARCHAR CONSTRAINT pkCategorie PRIMARY KEY,
+    descriptionCategorie VARCHAR,
     ordreCategorie SERIAL
 );
 
