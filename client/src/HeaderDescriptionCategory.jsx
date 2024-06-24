@@ -7,6 +7,7 @@ const useStyles = createUseStyles({
         width:"100wh",
         display:"flex",
         backgroundColor:"#333333",
+	borderBottom:"solid lightgrey 1px",
     },
     textarea:{
         width:"100vw",
@@ -25,16 +26,21 @@ const useStyles = createUseStyles({
 function HeaderDescriptionCategory({categoryDescription, categoryName}) {
 
     const [inputValue, setInputValue] = useState(categoryDescription);
+
+    const classes = useStyles();
+
     useEffect(()=>{
         setInputValue(categoryDescription);
     },[categoryDescription])
 
-    const classes = useStyles();
+    useEffect(()=>{
+ 	const tx = document.querySelector('textarea');
+        tx.style.height = 'fit-content';
+        tx.style.height = (tx.scrollHeight) + "px";
+    },[inputValue])
+   	
 
     function handleChange() {
-        const tx = document.querySelector('textarea');
-        tx.style.height = 'auto';
-        tx.style.height = (tx.scrollHeight) + "px";
         const description = document.querySelector("textarea").value
         setInputValue(description);
         putDescriptionCategory(description);

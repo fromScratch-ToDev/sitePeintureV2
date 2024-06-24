@@ -1,3 +1,3 @@
 @echo off
-powershell -WindowStyle Hidden -File "C:\Users\thiba\Downloads\appPeinture.ps1" 
+powershell -WindowStyle Hidden -File "C:\Users\franc\Documents\GitHub\sitePeintureV2\appPeinture.ps1" 
 exit
