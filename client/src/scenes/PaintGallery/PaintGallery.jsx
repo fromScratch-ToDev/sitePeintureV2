@@ -47,6 +47,8 @@ function PaintGallery({paintArray,setPaintArray, setPaintSelected,setIsPaintZoom
   const parent = useRef(null);
   const nameCategorySelected = categoriesNames[buttonRadioSelected];
   const modal = document.querySelector('#modalDragAndDrop');
+  let coordX = 0;
+  let coordY = 0;
   // gestionnaire d'évènement
   function handleDragEnter(event) {
     if (event.dataTransfer.types.length !== 0) {
@@ -67,6 +69,7 @@ function PaintGallery({paintArray,setPaintArray, setPaintSelected,setIsPaintZoom
       'image/webp', 'image/tiff', 'image/vnd.microsoft.icon',
       'image/heic', 'image/heif', 'image/avif',
     ];
+
     Array.from(files).forEach(async (file) => {
       if (allowedTypes.includes(file.type)) {
         const formData = new FormData(); 
@@ -100,40 +103,27 @@ function PaintGallery({paintArray,setPaintArray, setPaintSelected,setIsPaintZoom
   } 
 
   function onDragPaintStart(e, paint) {
-    const dragImage = paint.current.children[0].cloneNode();
-    dragImage.id = "dragImage";
-    dragImage.style.position = 'absolute';
-    document.querySelector('body').appendChild(dragImage);
-    e.dataTransfer.setDragImage(new Image(), 0, 0)
   }
   function onDragPaint(e, paint){
-    const dragImage = document.querySelector('#dragImage');
-    dragImage.style.top = e.pageY - dragImage.offsetHeight/2 +"px";
-    dragImage.style.left = e.clientX - dragImage.offsetWidth/2 +"px";
-
     const draggableDivs = Array.from(parent.current.children);
-
     draggableDivs.forEach((draggableDiv)=>{
-        if (e.clientX > draggableDiv.getBoundingClientRect().left + draggableDiv.offsetWidth/2 && 
-        e.clientX < draggableDiv.getBoundingClientRect().right &&
-        e.clientY > draggableDiv.getBoundingClientRect().top &&
-        e.clientY < draggableDiv.getBoundingClientRect().bottom) {
+        if (coordX > draggableDiv.getBoundingClientRect().left + draggableDiv.offsetWidth/2 && 
+        coordX < draggableDiv.getBoundingClientRect().right &&
+        coordY > draggableDiv.getBoundingClientRect().top &&
+        coordY < draggableDiv.getBoundingClientRect().bottom) {
             const targetDiv = draggableDivs[draggableDivs.indexOf(draggableDiv)+1]
             parent.current.insertBefore(paint.current, targetDiv)
         }
-        else if(e.clientX > draggableDiv.getBoundingClientRect().left && 
-        e.clientX < draggableDiv.getBoundingClientRect().right - draggableDiv.offsetWidth/2 &&
-        e.clientY > draggableDiv.getBoundingClientRect().top &&
-        e.clientY < draggableDiv.getBoundingClientRect().bottom){
+        else if(coordX > draggableDiv.getBoundingClientRect().left && 
+        coordX < draggableDiv.getBoundingClientRect().right - draggableDiv.offsetWidth/2 &&
+        coordY > draggableDiv.getBoundingClientRect().top &&
+        coordY < draggableDiv.getBoundingClientRect().bottom){
             parent.current.insertBefore(paint.current, draggableDiv)
         }
     })
   }
   function onDragPaintEnd(e, paint){
-    const dragImage = document.querySelector('#dragImage');
-    document.querySelector('body').removeChild(dragImage);
     const paintIds = Array.from(parent.current.children).map(paint => paint.children[0].dataset.id);
-    console.log(paintIds);
     modifyPaintOrder(paintIds);
   }
   return (
@@ -149,7 +139,7 @@ function PaintGallery({paintArray,setPaintArray, setPaintSelected,setIsPaintZoom
           <p className={classes.p}>Ajouter une image</p>
         </div>
       </dialog>
-      <section ref={parent} className={classes.container} onDragOver={(event) => event.preventDefault()} onDrop={(event)=>handleDrop(event)} onDragEnter={(event)=>handleDragEnter(event)}>
+      <section ref={parent} className={classes.container} onDragOver={(event) => {event.preventDefault(); coordX = event.clientX; coordY = event.clientY}} onDrop={(event)=>handleDrop(event)} onDragEnter={(event)=>handleDragEnter(event)}>
         {paintArray.map(([idPaint, urlPaint])=> <Paint idPaint={idPaint} urlPaint={urlPaint} setPaintSelected={setPaintSelected} setIsPaintZoomed={setIsPaintZoomed} key={`peinture-${idPaint}`} onDragPaintStart={onDragPaintStart} onDragPaint={onDragPaint} onDragPaintEnd={onDragPaintEnd}></Paint>)}
       </section>
     </>

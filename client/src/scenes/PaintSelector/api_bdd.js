@@ -15,7 +15,6 @@ export async function requestForPaint(index, categoriesNames, setPaintArray) {
         ids.forEach((id, index) => {
           idIndexMap[id] = index;
         });
-        console.log(idIndexMap);
         // Trie le deuxième tableau en utilisant le mapping des positions des IDs
         newPaintArray.sort((a, b) => {
           return idIndexMap[a[0]] - idIndexMap[b[0]];
